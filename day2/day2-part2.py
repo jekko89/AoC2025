@@ -1,6 +1,7 @@
 file = open("input.txt", "r")
 
 invalidTotal = 0
+invalidList = set()
 
 #get inputs
 for x in file:
@@ -10,15 +11,16 @@ for x in file:
         start = int(y[0])
         end = int(y[1])
         for z in range(start, end+1):
-            print(z)
             z = str(z)
-            halfLength = int(len(z)//2)
-            for a in range(1, halfLength+1):
-                checkMatch = z[:a]
-                print(checkMatch)
-                matchLength = len(checkMatch)
-                if checkMatch == z[a:a+matchLength]:
-                    print("match")
+            string_length = len(z)
+            for a in range(1, string_length // 2 + 1):
+                candidate_length = a
+                candidate = z[0:candidate_length]
+                candidate_count = z.count(candidate)
+                if candidate_count * candidate_length == string_length and candidate_count > 1:
+                    invalidList.add(int(z))
     
 #output
-#print("Total: " + str(invalidTotal))
+for i in invalidList:
+    invalidTotal += i
+print("Total: " + str(invalidTotal))
