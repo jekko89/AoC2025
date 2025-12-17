@@ -27,6 +27,5 @@ for y_pos in range(len(grid)):
             if rolls < 4:
                 total += 1
         
-    
 #output
 print(total)
